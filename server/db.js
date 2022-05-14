@@ -29,4 +29,22 @@ db.addNote = (noteToAdd, callback) => {
   })
 }
 
+db.editNote = (updateObj, callback) => {
+  // updateObj = {id: idVal, field: fieldVal}
+  //console.log('updateObj field: ', updateObj.field)
+  let fieldName = Object.keys(updateObj)[1];
+  //console.log('fieldName: ', fieldName);
+  db.query(`update notes set ${fieldName}="${updateObj[fieldName]}" where id=${updateObj.id}`, (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      console.log(`updated note!`);
+      callback(null, results);
+    }
+  })
+}
+
+// update notes set status='Hidden' where id=4;
+// update notes set title="updated title", category="Science" where id=4
+
 module.exports = db;

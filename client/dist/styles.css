@@ -22,12 +22,20 @@
 }
 
 .note {
-  padding: 1%;
+  padding: 2%;
+  position: relative;
   background: white;
   border: 1px;
   margin-top: 1%;
   box-shadow: 1px 1px 3px #cacaca;
   transition: all 0.4s;
+}
+
+.star {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  font-size: 72px;
 }
 
 .note:hover {

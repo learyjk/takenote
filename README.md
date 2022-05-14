@@ -52,9 +52,9 @@ You should be able to see the starter web page.
 ### Level 5
 ### Edit Notes
 
-- [] - Write a `PATCH` route in your server that will change whether a note is `Hidden` or `Starred`.
-- [] - Connect the `Hidden` and `Starred` buttons on the client side to your
-- [] - When a note is clicked on the client-side in the `NoteView` component, allow the user to edit the clicked field. (IE clicking on the title allows the user to change the title.)
+- [X] - Write a `PATCH` route in your server that will change whether a note is `Hidden` or `Starred`.
+- [X] - Connect the `Hidden` and `Starred` buttons on the client side to your
+- [X] - When a note is clicked on the client-side in the `NoteView` component, allow the user to edit the clicked field. (IE clicking on the title allows the user to change the title.)
 
 ### Level 6
 ### Filter and Sort Notes

@@ -34,3 +34,15 @@ app.post('/api/notes', (req, res) => {
     res.send();
   });
 });
+
+app.patch('/api/notes', (req, res) => {
+  // req.body is json of {id: idVal, field: val}
+  console.log('post req with body: ' + JSON.stringify(req.body));
+  db.editNote(req.body, (err, results) => {
+    if (err) {
+      console.log('error getting notes');
+      throw err;
+    };
+    res.send();
+  });
+});

@@ -13,9 +13,12 @@ class App extends React.Component {
       page: 'list',
       notes: [],
       selectedNoteId: null,
+      searchTerm: '',
     };
 
     this.selectNote = this.selectNote.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount = () => {
@@ -61,31 +64,73 @@ class App extends React.Component {
     })
   }
 
-  handleStatus = (event, noteId) => {
+  handleEdit = (event) => {
+    let id = parseInt(event.target.dataset.id);
+    let fieldName = event.target.dataset.field;
+    const newValue = prompt(`Enter new ${fieldName}: `);
+    axios({
+      method: 'patch',
+      url: '/api/notes',
+      data: { id: id, [fieldName]: newValue }
+    }).then((results) => {
+      let notes = this.state.notes.slice();
+      for (let note of notes) {
+        if (note.id === id) {
+          note[fieldName] = newValue;
+        }
+      }
+      this.setState({ notes })
+    });
+  }
+
+  handleStatus = (event) => {
     let status = event.target.name;
     let id = parseInt(event.target.dataset.id);
-    console.log('set note: ', id, ' to status: ', status);
-    let notes = this.state.notes.slice();
-
-    for (let note of notes) {
-      if (note.id === id) {
-        note.status = status
+    axios({
+      method: 'patch',
+      url: '/api/notes',
+      data: { id, status }
+    }).then((results) => {
+      let notes = this.state.notes.slice();
+      for (let note of notes) {
+        if (note.id === id) {
+          note.status = status
+        }
       }
-    }
-    console.log(notes);
+      console.log(notes);
+      this.setState({ notes })
+    });
+  }
 
-    this.setState({ notes })
+  handleSearch = (event) => {
+    let searchTerm = event.target.value;
+    this.setState({ searchTerm });
   }
 
   pageRouter() {
+
+    const f_notes = this.state.notes.filter((note) => {
+      return note.category.toLowerCase().includes(this.state.searchTerm.toLowerCase());
+    })
+
+    const sf_notes = f_notes.sort((a, b) => {
+      let statusA = a.status;
+      let statusB = b.status;
+      if (statusA < statusB) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+
     if (this.state.page === 'list') {
-      return <Notes notes={this.state.notes} selectNote={this.selectNote} />
+      return <Notes notes={sf_notes} selectNote={this.selectNote} handleSearch={this.handleSearch} searchTerm={this.state.searchTerm} />
     } else if (this.state.page === 'newNote') {
       return <AddNote handleAddNote={this.handleAddNote} />
     } else if (this.state.page === 'noteView') {
       // get note with id = selectedNote id.
       const note = this.state.notes.find(note => note.id === this.state.selectedNoteId);
-      return <NoteView note={note} handleStatus={this.handleStatus} />
+      return <NoteView note={note} handleStatus={this.handleStatus} handleEdit={this.handleEdit} />
     }
   }
 
