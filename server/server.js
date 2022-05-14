@@ -19,8 +19,18 @@ app.get('/api/notes', (req, res) => {
       console.log('error getting notes');
       throw err;
     };
-    console.log(results);
+    //console.log(results);
     res.send(results);
   });
+});
 
+app.post('/api/notes', (req, res) => {
+  console.log('post req with body: ' + req.body);
+  db.addNote(req.body, (err, results) => {
+    if (err) {
+      console.log('error getting notes');
+      throw err;
+    };
+    res.send();
+  });
 });

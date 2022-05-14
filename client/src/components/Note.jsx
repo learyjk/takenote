@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Note = ({ note }) => {
+const Note = ({ note, selectNote }) => {
   return (
-    <div className="note">
+    <div className="note" onClick={() => { selectNote(note.id) }}>
       <div className="note-title"><h3>{note.title}</h3></div>
       <div className="note-category"><h4>{note.category}</h4></div>
-      <div className="note-desc">{note.note}</div>
+      <div className="note-desc">{note.tagline}</div>
     </div>
   )
 }

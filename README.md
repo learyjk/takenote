@@ -26,28 +26,28 @@ You should be able to see the starter web page.
 ### Level 1
 ### Dynamically Render All Notes from Database
 
-- [] - Write a GET route on the server.js that gets all notes from the database.
-- [] - Refactor the **Notes** component in the client/src/components directory to dynamically render notes from the database on page load.
+- [X] - Write a GET route on the server.js that gets all notes from the database.
+- [X] - Refactor the **Notes** component in the client/src/components directory to dynamically render notes from the database on page load.
 
 ### Level 2
 ### Show a Note When Clicked
 
-- [] - Implement the `NoteView` component so that it will show a full note when clicked. (Title, category, tagline, note).
-- [] - Add a new view into the `App.jsx` that will **only** show the **selected note** when a note is clicked.
-- [] - Add buttons or icons to the `NoteView` component that will allow a user to mark thier notes as `Hidden` or `Starred`. This operation does not yet need to alter the database. A note cannot be both `Hidden` and `Starred` at the same time.
+- [X] - Implement the `NoteView` component so that it will show a full note when clicked. (Title, category, tagline, note).
+- [X] - Add a new view into the `App.jsx` that will **only** show the **selected note** when a note is clicked.
+- [X] - Add buttons or icons to the `NoteView` component that will allow a user to mark thier notes as `Hidden` or `Starred`. This operation does not yet need to alter the database. A note cannot be both `Hidden` and `Starred` at the same time.
 
 ### Level 3
 ### Edit a Note
 
-- [] - Implement the `NewNote` component so that it will allow a user to enter information about a new note. (Title, category, tagline, note).
-- [] - Adding a note in the `NewNote` component should also update the list of notes in the `Notes` component.
+- [X] - Implement the `NewNote` component so that it will allow a user to enter information about a new note. (Title, category, tagline, note).
+- [X] - Adding a note in the `NewNote` component should also update the list of notes in the `Notes` component.
 
 ### Level 4
 ### Add Notes to Database
 
-- [] - Write an `Add Note` model function in your server that will add new notes to the database.
-- [] - Write a `POST` route in your server that adds new notes to your database.
-- [] - Ensure that your client-side only updates the notes list when a `POST` request successfully writes to the database.
+- [X] - Write an `Add Note` model function in your server that will add new notes to the database.
+- [X] - Write a `POST` route in your server that adds new notes to your database.
+- [X] - Ensure that your client-side only updates the notes list when a `POST` request successfully writes to the database.
 
 ### Level 5
 ### Edit Notes
