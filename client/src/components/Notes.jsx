@@ -28,7 +28,17 @@ class Notes extends React.Component {
       return searched && hidden;
     })
 
-    const sf_notes = f_notes.sort((a, b) => {
+    let sf_notes = f_notes.sort((a, b) => {
+      let viewsA = a.viewCount;
+      let viewsB = b.viewCount;
+      if (viewsA > viewsB) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+
+    sf_notes = sf_notes.sort((a, b) => {
       let statusA = a.status;
       let statusB = b.status;
       if (statusA < statusB) {

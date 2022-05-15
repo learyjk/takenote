@@ -57,9 +57,11 @@ class App extends React.Component {
 
   selectNote = (selectedNoteId) => {
     console.log('selected note with id: ' + selectedNoteId);
-    this.setState({ selectedNoteId }, () => {
-      this.changePage('noteView');
-    })
+    this.incrementViewCount(selectedNoteId, this.state.notes[selectedNoteId - 1].viewCount, () => {
+      this.setState({ selectedNoteId }, () => {
+        this.changePage('noteView');
+      });
+    });
   }
 
   handleEdit = (event) => {
@@ -100,6 +102,24 @@ class App extends React.Component {
     });
   }
 
+  incrementViewCount = (noteId, noteViews, callback) => {
+    let notes = this.state.notes.slice();
+    for (let note of notes) {
+      if (note.id === noteId) {
+        note.viewCount = noteViews + 1;
+      }
+    }
+    this.setState({ notes }, () => {
+      axios({
+        method: 'patch',
+        url: '/api/notes',
+        data: { id: noteId, viewCount: noteViews + 1 }
+      }).then(() => {
+        callback();
+      })
+    })
+  }
+
   pageRouter() {
 
     if (this.state.page === 'list') {
@@ -107,7 +127,6 @@ class App extends React.Component {
     } else if (this.state.page === 'newNote') {
       return <AddNote handleAddNote={this.handleAddNote} />
     } else if (this.state.page === 'noteView') {
-      // get note with id = selectedNote id.
       const note = this.state.notes.find(note => note.id === this.state.selectedNoteId);
       return <NoteView note={note} handleStatus={this.handleStatus} handleEdit={this.handleEdit} />
     }

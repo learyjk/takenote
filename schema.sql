@@ -10,6 +10,7 @@ CREATE TABLE notes (
   category varchar(255) NOT NULL,
   tagline varchar(255) NOT NULL,
   note varchar(1024) NOT NULL,
+  viewCount int NOT NULL DEFAULT 0,
   status ENUM('None', 'Hidden', 'Starred') NOT NULL,
   PRIMARY KEY (id)
 );
