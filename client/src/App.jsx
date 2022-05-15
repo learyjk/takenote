@@ -13,12 +13,10 @@ class App extends React.Component {
       page: 'list',
       notes: [],
       selectedNoteId: null,
-      searchTerm: '',
     };
 
     this.selectNote = this.selectNote.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount = () => {
@@ -102,29 +100,10 @@ class App extends React.Component {
     });
   }
 
-  handleSearch = (event) => {
-    let searchTerm = event.target.value;
-    this.setState({ searchTerm });
-  }
-
   pageRouter() {
 
-    const f_notes = this.state.notes.filter((note) => {
-      return note.category.toLowerCase().includes(this.state.searchTerm.toLowerCase());
-    })
-
-    const sf_notes = f_notes.sort((a, b) => {
-      let statusA = a.status;
-      let statusB = b.status;
-      if (statusA < statusB) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
-
     if (this.state.page === 'list') {
-      return <Notes notes={sf_notes} selectNote={this.selectNote} handleSearch={this.handleSearch} searchTerm={this.state.searchTerm} />
+      return <Notes notes={this.state.notes} selectNote={this.selectNote} />
     } else if (this.state.page === 'newNote') {
       return <AddNote handleAddNote={this.handleAddNote} />
     } else if (this.state.page === 'noteView') {

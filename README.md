@@ -59,10 +59,10 @@ You should be able to see the starter web page.
 ### Level 6
 ### Filter and Sort Notes
 
-- [] - Implement a sorting and filtering functionality on the `Notes` component:
-  - [] - User should be able to only see notes that match a certain category.
-  - [] - User should be able to see `Starred` notes at the top of the list.
-  - [] - User should NOT be able to see `Hidden` notes unless a `Show Hidden` button or checkbox is clicked.
+- [X] - Implement a sorting and filtering functionality on the `Notes` component:
+  - [X] - User should be able to only see notes that match a certain category.
+  - [X] - User should be able to see `Starred` notes at the top of the list.
+  - [X] - User should NOT be able to see `Hidden` notes unless a `Show Hidden` button or checkbox is clicked.
 
 ### Level 7
 ### View Tracking and Most Frequently Viewed
